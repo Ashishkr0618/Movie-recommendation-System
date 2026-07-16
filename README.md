@@ -5,7 +5,6 @@
 - The required `.pkl` files will be generated automatically.
 - Place all the generated `.pkl` files in the same folder as `main.py`.
 - Open `main.py` in your preferred IDE.
-- Run main.py ke niche ye wala line add kar de
 Bash'
 python -m main
 '
