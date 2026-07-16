@@ -5,5 +5,9 @@
 - The required `.pkl` files will be generated automatically.
 - Place all the generated `.pkl` files in the same folder as `main.py`.
 - Open `main.py` in your preferred IDE.
+- Run main.py ke niche ye wala line add kar de
+Bash'
+python -m main
+'
 - Install the required dependencies if they are not already installed.
 - Run `main.py` to start the Movie Recommendation System.
