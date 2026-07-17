@@ -2,15 +2,15 @@ import streamlit as st
 import pickle
 import pandas as pd
 import requests
+import os
 
+if not os.path.exists("similarity.pkl") or not os.path.exists("movie_dict.pkl"):
+    import generate_model
 movies_dict = pickle.load(open('movie_dict.pkl', 'rb'))
 movies = pd.DataFrame(movies_dict)
 
 similarity = pickle.load(open('similarity.pkl', 'rb'))
 def fetch_poster(movie_id):
-    # response = requests.get('https://api.themoviedb.org/3/movie/{}?api_key=8265bd1679663a7ea12ac168da84d2e8&language=en-US'.format(movie_id))
-    # data = response.json()
-    # return "https://image.tmdb.org/t/p/w500/" + data['poster_path']
     url = f"https://api.themoviedb.org/3/movie/{movie_id}?api_key=8265bd1679663a7ea12ac168da84d2e8&language=en-US"
 
     try:
@@ -19,7 +19,7 @@ def fetch_poster(movie_id):
 
         data = response.json()
 
-        print(data)  # Debug
+        print(data)  
 
         poster_path = data.get("poster_path")
 
@@ -54,9 +54,6 @@ selected_movie_name = st.selectbox(
 )
 if st.button('Recommend'):
     names , poster = recommend(selected_movie_name)
-    # for i in recommendation:
-    #     st.write(i)
-    # col1 , col2 , col3 , col4 , col5 = st.columns(5)
     col1, col2, col3, col4, col5 = st.columns(5)
 
     with col1:
@@ -83,18 +80,3 @@ if st.button('Recommend'):
         st.text(names[4])
         if poster[4]:
             st.image(poster[4])
-    # with col1:
-    #     st.text(names[0])
-    #     st.image(poster[0])
-    # with col2:
-    #     st.text(names[1])
-    #     st.image(poster[1])
-    # with col3:
-    #     st.text(names[2])
-    #     st.image(poster[2])
-    # with col4:
-    #     st.text(names[3])
-    #     st.image(poster[3])
-    # with col5:
-    #     st.text(names[4])
-    #     st.image(poster[4])
